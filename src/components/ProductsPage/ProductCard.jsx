@@ -1,5 +1,5 @@
 import Card from "@material-ui/core/Card"
-import React from "react"
+import React, {useContext} from "react"
 import CardMedia from "@material-ui/core/CardMedia"
 import CardContent from "@material-ui/core/CardContent"
 import Typography from "@material-ui/core/Typography"
@@ -9,6 +9,8 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import Button from "@material-ui/core/Button"
 import Grid from "@material-ui/core/Grid"
 import {Link} from 'react-router-dom'
+
+import {ShoppingCart} from '../../ProductContext'
 
 const useStyles = makeStyles(() => ({
   root: {},
@@ -25,6 +27,13 @@ const useStyles = makeStyles(() => ({
 
 export const ProductCard = ({product}) => {
   const classes = useStyles()
+  const {handleAddProduct} = useContext(ShoppingCart)
+
+  const handleClickProduct = () => {
+    handleAddProduct(product)
+  }
+
+
   return (
     <Card className={classes.root} elevation={2}>
       <Link to={`/${product.id}`}>
@@ -47,7 +56,7 @@ export const ProductCard = ({product}) => {
             </Typography>
           </Grid>
           <Grid item>
-            <Button startIcon={<AddShoppingCartIcon/>} variant="contained" color="primary">
+            <Button onClick={handleClickProduct} startIcon={<AddShoppingCartIcon/>} variant="contained" color="primary">
               Add to cart
             </Button>
           </Grid>

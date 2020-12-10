@@ -9,15 +9,16 @@ import {EShopToolbar} from "./components/Toolbar";
 import {ProductDetailPage} from "./pages/ProductDetailPage";
 import {ProductListProvider} from "./components/ProductsPage/ProductListProvider";
 import {ProductDetailProvider} from "./components/ProductDetailPage/ProductDetailProvider";
+import {ShoppingCartProvider} from "./components/ShoppingCartProvider";
 
 export const EShopRouter = () => (
-  <div>
+  <ShoppingCartProvider>
     <EShopToolbar/>
     <Router>
       <Switch>
         <Route path="/" exact>
           <ProductListProvider>
-            <ProductsPage />
+            <ProductsPage/>
           </ProductListProvider>
         </Route>
         <Route exact path="/:productId" render={(props) => (
@@ -25,7 +26,7 @@ export const EShopRouter = () => (
             <ProductDetailPage/>
           </ProductDetailProvider>
         )}/>
-    </Switch>
-  </Router>
-</div>
+      </Switch>
+    </Router>
+  </ShoppingCartProvider>
 )
