@@ -2,12 +2,13 @@ import Grid from "@material-ui/core/Grid"
 import {Card, makeStyles} from "@material-ui/core"
 import CardContent from "@material-ui/core/CardContent"
 import CardMedia from "@material-ui/core/CardMedia"
-import React from "react"
+import React, {useContext} from "react"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Link} from "react-router-dom";
+import {ShoppingCart} from "../../ProductContext";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -34,6 +35,11 @@ const useStyles = makeStyles(() => ({
 
 export const ProductDetailCard = ({product}) => {
   const classes = useStyles()
+  const {handleAddProduct} = useContext(ShoppingCart)
+
+  const handleClick = () => {
+    handleAddProduct(product)
+  }
 
   return (
     <Card className={classes.root}>
@@ -63,7 +69,7 @@ export const ProductDetailCard = ({product}) => {
                 </Link>
               </Grid>
               <Grid item>
-                <Button variant="contained" color="primary" startIcon={<AddShoppingCartIcon/>}>
+                <Button onClick={handleClick} variant="contained" color="primary" startIcon={<AddShoppingCartIcon/>}>
                   Add to cart
                 </Button>
               </Grid>
