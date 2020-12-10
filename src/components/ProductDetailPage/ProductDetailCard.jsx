@@ -6,6 +6,8 @@ import React from "react"
 import Typography from "@material-ui/core/Typography"
 import Button from "@material-ui/core/Button"
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import {Link} from "react-router-dom";
 
 const useStyles = makeStyles(() => ({
   root: {
@@ -24,6 +26,9 @@ const useStyles = makeStyles(() => ({
   },
   description:{
     margin: '15px 0'
+  },
+  goToBack:{
+    textDecoration: 'none'
   }
 }))
 
@@ -49,10 +54,19 @@ export const ProductDetailCard = ({product}) => {
                 {product.description}
               </Typography>
             </Grid>
-            <Grid item>
-              <Button variant="contained" color="primary" startIcon={<AddShoppingCartIcon/>}>
-                Add to cart
-              </Button>
+            <Grid item container spacing={1}>
+              <Grid item>
+                <Link to="/" className={classes.goToBack}>
+                  <Button variant="contained" color="primary" startIcon={<ArrowBackIcon/>}>
+                    Go to Back
+                  </Button>
+                </Link>
+              </Grid>
+              <Grid item>
+                <Button variant="contained" color="primary" startIcon={<AddShoppingCartIcon/>}>
+                  Add to cart
+                </Button>
+              </Grid>
             </Grid>
           </Grid>
         </CardContent>
