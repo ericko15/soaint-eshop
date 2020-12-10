@@ -10,10 +10,12 @@ import ArrowBackIcon from '@material-ui/icons/ArrowBack';
 import {Link} from "react-router-dom";
 import {ShoppingCart} from "../../ProductContext";
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles((theme) => ({
   root: {
+    [theme.breakpoints.up('sm')]:{
+      display: 'flex',
+    },
     margin: '0 auto',
-    display: 'flex',
     maxWidth: 900
   },
   media: {
